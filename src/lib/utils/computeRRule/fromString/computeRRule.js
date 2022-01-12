@@ -110,7 +110,6 @@ const computeRRule = (data, rrule) => {
   } catch (e) {
     return { ...data, error: { value: rrule, message: e } };
   }
-  console.log(newDataObj, 'newDataObj')
 
   return newDataObj;
 };
