@@ -11,7 +11,6 @@ import configureInitialState from '../utils/configureInitialState';
 import translateLabel from '../utils/translateLabel';
 import translations from '../translations';
 import '../styles/index.css';
-import "react-datetime/css/react-datetime.css";
 
 class ReactRRuleGenerator extends PureComponent {
   // compute default view based on user's config

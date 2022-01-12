@@ -1,10 +1,10 @@
 {
-  "name": "react-rrule-generator",
+  "name": "rrule-react",
   "version": "1.2.0",
-  "author": "Filip Duczyminski <fduczyminski@gmail.com>",
+  "author": "Vinay Shrestha <vinayshrestha555@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Fafruch/react-rrule-generator.git"
+    "url": "git+https://github.com/shrnayvi/react-rrule-generator.git"
   },
   "license": "MIT",
   "main": "build/index.js",
