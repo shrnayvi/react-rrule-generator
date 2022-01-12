@@ -11,6 +11,7 @@ import configureInitialState from '../utils/configureInitialState';
 import translateLabel from '../utils/translateLabel';
 import translations from '../translations';
 import '../styles/index.css';
+import "react-datetime/css/react-datetime.css";
 
 class ReactRRuleGenerator extends PureComponent {
   // compute default view based on user's config
@@ -59,6 +60,9 @@ class ReactRRuleGenerator extends PureComponent {
         end,
         options,
         error,
+        options: {
+          needTimeFormat,
+        }
       },
     } = this.state;
 
@@ -83,6 +87,7 @@ class ReactRRuleGenerator extends PureComponent {
                   start={start}
                   handleChange={this.handleChange}
                   translations={this.props.translations}
+                  needTimeFormat={needTimeFormat}
                 />
                 <hr />
               </div>
@@ -107,6 +112,7 @@ class ReactRRuleGenerator extends PureComponent {
                   end={end}
                   handleChange={this.handleChange}
                   translations={this.props.translations}
+                  needTimeFormat={needTimeFormat}
                 />
               </div>
             )
@@ -129,6 +135,7 @@ ReactRRuleGenerator.propTypes = {
     hideEnd: PropTypes.bool,
     hideError: PropTypes.bool,
     weekStartsOnSunday: PropTypes.bool,
+    needTimeFormat: PropTypes.bool,
   }),
   value: PropTypes.string,
   onChange: PropTypes.func,

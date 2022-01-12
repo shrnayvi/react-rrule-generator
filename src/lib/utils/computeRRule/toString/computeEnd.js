@@ -8,7 +8,7 @@ const computeEnd = ({ mode, after, onDate: { date } }) => {
   }
 
   if (mode === 'On date') {
-    end.until = moment(date).format();
+    end.until = moment.utc(date).format();
   }
 
   return end;

@@ -10,7 +10,8 @@ const Start = ({
     onDate,
   },
   handleChange,
-  translations
+  translations,
+  needTimeFormat,
 }) => (
   <div className="px-3">
     <div className="form-group row">
@@ -24,7 +25,7 @@ const Start = ({
           </strong>
         </label>
       </div>
-      <StartOnDate id={id} onDate={onDate} handleChange={handleChange} translations={translations} />
+      <StartOnDate id={id} onDate={onDate} handleChange={handleChange} translations={translations} needTimeFormat={needTimeFormat} />
     </div>
   </div>
 );
@@ -36,6 +37,7 @@ Start.propTypes = {
   }).isRequired,
   handleChange: PropTypes.func.isRequired,
   translations: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
+  needDateFormat: PropTypes.bool,
 };
 
 export default Start;

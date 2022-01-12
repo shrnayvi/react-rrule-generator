@@ -18,6 +18,11 @@ It also uses:
 * [moment](https://github.com/moment/moment)
 * [react-datetime](https://github.com/YouCanBookMe/react-datetime)
 
+*Note: Forked from `https://github.com/Fafruch/react-rrule-generator` as it was no longer maintained.*
+Fixes( or features :) ):
+- Added time to the datepicker.
+- Used datetime format as created by the package `rrule`.
+
 ## Demo
 https://fafruch.github.io/react-rrule-generator
 
@@ -110,6 +115,9 @@ class ControlledRender extends Component {
 | **hideEnd** | `boolean` | If `true` ending form is not rendered. Default: `false` |
 | **hideError** | `boolean` | If `true` error alert is not rendered. Default: `false` |
 | **weekStartsOnSunday** | `boolean` | If set to `true`, weeks starts on Sunday (both for views and RRule string). Default: `false` |
+| **needTimeFormat** | `boolean` | If `true` time is added to the datepicker. Default: `false` |
+
 
 ## License 
 MIT
+

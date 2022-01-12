@@ -14,7 +14,8 @@ const End = ({
     options,
   },
   handleChange,
-  translations
+  translations,
+  needTimeFormat,
 }) => {
   const isOptionAvailable = option => !options.modes || options.modes.indexOf(option) !== -1;
   const isOptionSelected = option => mode === option;
@@ -62,6 +63,7 @@ const End = ({
             onDate={onDate}
             handleChange={handleChange}
             translations={translations}
+            needTimeFormat={needTimeFormat}
           />
         }
 
@@ -83,6 +85,7 @@ End.propTypes = {
   }).isRequired,
   handleChange: PropTypes.func.isRequired,
   translations: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
+  needTimeFormat: PropTypes.bool,
 };
 
 export default End;

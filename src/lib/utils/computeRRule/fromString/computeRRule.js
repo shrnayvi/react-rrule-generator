@@ -1,7 +1,7 @@
 import { rrulestr as RRuleObjectFromString } from 'rrule';
 import moment from 'moment';
 
-import { DATE_TIME_FORMAT } from '../../../constants/index';
+import { DATE_TIME_FORMAT, DATE_WITH_TIME_FORMAT } from '../../../constants/index';
 import computeStartOnDate from './computeStartOnDate';
 import computeFrequency from './computeFrequency';
 import computeYearlyMode from './computeYearlyMode';
@@ -29,6 +29,8 @@ const computeRRule = (data, rrule) => {
     return data;
   }
 
+  const dateTimeFormat = data.options.needTimeFormat ? DATE_WITH_TIME_FORMAT : DATE_TIME_FORMAT;
+
   let newDataObj;
   try {
     const rruleObj = RRuleObjectFromString(rrule).origOptions;
@@ -38,7 +40,7 @@ const computeRRule = (data, rrule) => {
       start: {
         ...data.start,
         onDate: {
-          date: moment(computeStartOnDate(data, rruleObj)).format(DATE_TIME_FORMAT),
+          date: moment.utc(computeStartOnDate(data, rruleObj)).format(dateTimeFormat),
           options: {
             ...data.start.onDate.options,
             weekStartsOnSunday: computeWeekStartDay(data, rruleObj),
@@ -92,7 +94,7 @@ const computeRRule = (data, rrule) => {
         mode: computeEndMode(data, rruleObj),
         after: computeEndAfter(data, rruleObj),
         onDate: {
-          date: moment(computeEndOnDate(data, rruleObj)).format(DATE_TIME_FORMAT),
+          date: moment.utc(computeEndOnDate(data, rruleObj)).format(dateTimeFormat),
           options: {
             ...data.end.onDate.options,
             weekStartsOnSunday: computeWeekStartDay(data, rruleObj),
@@ -108,6 +110,7 @@ const computeRRule = (data, rrule) => {
   } catch (e) {
     return { ...data, error: { value: rrule, message: e } };
   }
+  console.log(newDataObj, 'newDataObj')
 
   return newDataObj;
 };

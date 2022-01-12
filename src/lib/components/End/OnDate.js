@@ -4,7 +4,7 @@ import moment from 'moment';
 import DateTime from 'react-datetime';
 import 'moment/min/locales';
 
-import { DATE_TIME_FORMAT } from '../../constants/index';
+import { DATE_TIME_FORMAT, DATE_WITH_TIME_FORMAT } from '../../constants/index';
 import translateLabel from '../../utils/translateLabel';
 
 const EndOnDate = ({
@@ -14,11 +14,13 @@ const EndOnDate = ({
     options,
   },
   handleChange,
-  translations
+  translations,
+  needTimeFormat,
 }) => {
   const CustomCalendar = options.calendarComponent;
 
   const locale = options.weekStartsOnSunday ? 'en-ca' : 'en-gb';
+  const resultingDateTimeFormat = needTimeFormat ? DATE_WITH_TIME_FORMAT : DATE_TIME_FORMAT;
   const calendarAttributes = {
     'aria-label': translateLabel(translations, 'end.tooltip'),
     value: date,
@@ -46,7 +48,11 @@ const EndOnDate = ({
             }}
           />
           : <DateTime
-            {...calendarAttributes}
+            value={moment(date)}
+            ariaLabel={translateLabel(translations, 'end.tooltip')}
+            dateFormat={DATE_TIME_FORMAT}
+            locale={locale}
+            readOnly
             inputProps={
               {
                 id: `${id}-datetime`,
@@ -55,7 +61,7 @@ const EndOnDate = ({
               }
             }
             locale={translateLabel(translations, 'locale')}
-            timeFormat={false}
+            timeFormat={needTimeFormat}
             viewMode="days"
             closeOnSelect
             closeOnTab
@@ -63,7 +69,7 @@ const EndOnDate = ({
             onChange={(inputDate) => {
               const editedEvent = {
                 target: {
-                  value: moment(inputDate).format(DATE_TIME_FORMAT),
+                  value: moment(inputDate).format(resultingDateTimeFormat),
                   name: 'end.onDate.date',
                 },
               };

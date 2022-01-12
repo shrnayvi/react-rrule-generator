@@ -67,6 +67,7 @@ class App extends Component {
             value={this.state.rrule}
             config={{
               hideStart: false,
+                needTimeFormat: true,
             }}
             translations={this.getTranslation()}
           />
