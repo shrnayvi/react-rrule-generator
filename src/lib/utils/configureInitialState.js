@@ -12,6 +12,7 @@ const configureState = (config = {}, calendarComponent, id) => {
   const configureHideStart = () => (typeof config.hideStart === 'undefined' ? true : config.hideStart);
   const uniqueRruleId = isEmpty(id) ? uniqueId('rrule-') : id;
   const needTimeFormat = config.needTimeFormat || false;
+  const isValidDate = config.isValidDate; 
 
   // Date format result
   const dateFormat = needTimeFormat ? DATE_WITH_TIME_FORMAT : DATE_TIME_FORMAT;
@@ -23,6 +24,7 @@ const configureState = (config = {}, calendarComponent, id) => {
         options: {
           weekStartsOnSunday: config.weekStartsOnSunday,
           calendarComponent,
+          isValidDate,
         },
       },
     },
@@ -90,6 +92,7 @@ const configureState = (config = {}, calendarComponent, id) => {
         options: {
           weekStartsOnSunday: config.weekStartsOnSunday,
           calendarComponent,
+          isValidDate,
         },
       },
       options: {

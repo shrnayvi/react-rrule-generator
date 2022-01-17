@@ -27,6 +27,7 @@ const StartOnDate = ({
     locale,
     readOnly: true,
   };
+  const isValidDate = options.isValidDate || null;
 
   return (
     <div className="col-6 col-sm-3">
@@ -49,6 +50,7 @@ const StartOnDate = ({
           : <DateTime
             ariaLabel={translateLabel(translations, 'start.tooltip')}
             value={moment(date)}
+            isValidDate={isValidDate}
             dateFormat={DATE_TIME_FORMAT}
             locale={locale}
             readOnly
@@ -88,6 +90,7 @@ StartOnDate.propTypes = {
     options: PropTypes.shape({
       weekStartsOnSunday: PropTypes.bool,
       calendarComponent: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+      isValidDate: PropTypes.func,
     }).isRequired,
   }).isRequired,
   handleChange: PropTypes.func.isRequired,
