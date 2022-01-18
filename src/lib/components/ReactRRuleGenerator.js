@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { cloneDeep, set } from 'lodash';
+import { cloneDeep, set, get } from 'lodash';
 
 import Start from './Start/index';
 import Repeat from './Repeat/index';
@@ -31,6 +31,25 @@ class ReactRRuleGenerator extends PureComponent {
       // if value is provided to RRuleGenerator, it's used to compute state of component's forms
       const data = computeRRuleFromString(this.state.data, this.props.value);
       this.setState({ data });
+    }
+  }
+
+  componentDidUpdate(previousProps) {
+    const previousTimeFormat = get(previousProps, 'config.needTimeFormat', false);
+    const currentTimeFormat = get(this.props, 'config.needTimeFormat', false);
+    if(previousTimeFormat !== currentTimeFormat) {
+      this.setState((state) => {
+        return {
+          ...state,
+          data: {
+            ...this.state.data,
+            options: {
+              ...this.state.data.options,
+              needTimeFormat: currentTimeFormat,
+            }
+          }
+        }
+      })
     }
   }
 
